@@ -83,7 +83,6 @@ Phase II:
 Add authentication and authroisation feature
 
 POST /login
-
 Allow an author to login with their email and password. On a successful login attempt return a JWT token contatining the authorId
 If the credentials are incorrect return a suitable error message with a valid HTTP status code
 
