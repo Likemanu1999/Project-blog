@@ -18,7 +18,7 @@ const login = async function(req, res) {
         if (requestBody.email && requestBody.password) {
             const check = await authorModel.findOne({ email: requestBody.email, password: requestBody.password });
             if (!check) {
-                return res.status(400).send({ status: true, msg: "Invalid login credentials" })
+                return res.status(400).send({ status:false, msg: "Invalid login credentials" })
             }
 
             let payload = { _id: check._id }
