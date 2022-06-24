@@ -1,5 +1,18 @@
+const { request } = require("express")
 const authorModel = require("../models/authorModel")
 const blogModel = require("../models/blogModel")
+
+//validation function 
+const isValid = function(value) {
+    if (typeof value === 'undefined' || value === null) return false
+    if (typeof value === 'string' && value.trim().length === 0) return false
+    return true;
+}
+
+const isValidRequestBody = function(requestBody) {
+    return Object.keys(requestBody).length > 0
+        //will return an array of all keys. so, we can simply get the length of an array with .length
+}
 
 const createBlog = async function (req, res) {
     try {
@@ -28,68 +41,6 @@ const createBlog = async function (req, res) {
         res.status(500).send({ msg: err.message })
     }
 }
-
-
-/*
-
-const getBlogs = async function (req, res) {
-    try {
-        let authorId = req.query.authorId
-        let category = req.query.category
-        let tags = req.query.tags
-        let subcategory = req.query.subcategory
-
-        if (Object.keys(req.query).length === 0) return res.status(400).send({ status: false, msg: "No data provided in the query." })
-
-        let getBlogs = await blogModel.find(
-            {
-                $and: [
-                    { $and: [{ isDeleted: false }, { isPublished: true }] },
-                    {
-                        $or: [
-                            { authorId: authorId },
-                            { category: { $in: [category] } },
-                            { tags: { $in: [tags] } },
-                            { subcategory: { $in: [subcategory] } }
-                        ]
-                    }
-                ]
-            }
-        )
-
-
-        /*
-        let getBlogs = await blogModel.find(
-            {
-                $and: [
-                    { isDeleted: false },
-                    { isPublished: true },
-                    {
-                        $and: [{
-                            $or: [
-                                { authorId: authorId },
-                                { category: category },
-                                { tags: tags },
-                                { subcategory: subcategory }
-                            ]
-                        }]
-                    }
-                ]
-            }
-        )
-        
-        if (getBlogs.length === 0) return res.status(404).send({ status: true, msg: "No such blog exist" });
-        return res.status(200).send({ status: true, data: getBlogs })
-        
-    } catch (err) {
-        return res.status(500).send({ msg: err.message })
-    }
-}
-
-*/
-
-
-
 const getBlogs2 = async function (req, res) {
     try {
 
@@ -122,7 +73,6 @@ const getBlogs2 = async function (req, res) {
 
 
 const updateBlog = async function (req, res) {
-
     let blogId = req.params.blogId;
     let blog = await blogModel.findById(blogId);
 
@@ -140,7 +90,6 @@ const updateBlog = async function (req, res) {
         return res.status(201).send({ status: updatedBlog, data: updatedBlog });
     }
 };
-
 
 const deleteBlogById = async function (req, res) {
     try {
@@ -168,29 +117,7 @@ const deleteBlogById = async function (req, res) {
 };
 
 
-/*
-const deleteBlogByQuery = async function (req, res) {
-    try {
-        let data = req.query
-        let category = data.category
-        let authorId = data.authorId
-        let tags = data.tag
-        let subcategory = data.subcategory
 
-        if (Object.keys(data).length === 0) return res.status(400).send({ status: false, msg: "BAD REQUEST (No data given)" })
-
-        const deleteByQuery = await blogModel.updateMany(
-            { $and: [{ $or: [{ category: category }, { authorId: authorId }, { tags: tags }, { subcategory: subcategory }, { isPublished: false }] }] },
-            { $set: { isDeleted: true, deletedAt: new Date() } },
-            { new: true })
-
-        console.log(deleteByQuery);
-        return res.status(200).send({ status: true, msg: deleteByQuery })
-    } catch (err) {
-        return res.status(500).send({ error: err.message })
-    }
-}
-*/
 
 
 const deleteBlogByQuery = async function (req, res) {

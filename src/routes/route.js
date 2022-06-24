@@ -12,7 +12,6 @@ router.post('/login', authorController.loginAuthor)
 router.post('/blogs', middleware.authenticate, middleware.authorize, blogController.createBlog)
 
 router.get('/blogs', blogController.getBlogs2)
-// router.get('/blogs', middleware.authenticate, middleware.authorize, blogController.getBlogs2)
 
 router.put('/blogs/:blogId', middleware.authenticate, middleware.authorize, blogController.updateBlog)
 
