@@ -15,18 +15,37 @@ const isValidRequestBody = function(requestBody) {
         //will return an array of all keys. so, we can simply get the length of an array with .length
 }
 
-// api to create author 
-const createAuthor = async function(req, res) {
+const createAuthor = async function (req, res) {
     try {
         let requestBody = req.body
 
-        if (!isValidRequestBody(requestBody)) {
-            res.status(400).send({ status: false, message: 'Invalid request parameters. Please provide author details' })
-            return 
-        }
-        if (!isValid(requestBody.fname)) {
-            res.status(400).send({ status: false, message: 'First name is required' })
-            return
+        if (keysArray.length !== 0) {
+
+            if (!isValid(authorData.fname)) return res.status(400).send({ status: false, message: 'First name is required' })
+            if (!isValid(authorData.lname)) return res.status(400).send({ status: false, message: 'Last name is required' })
+            if (!isValid(authorData.title)) return res.status(400).send({ status: false, message: 'Title is required' })
+            if (!isValid(authorData.email)) return res.status(400).send({ status: false, message: 'email is required' })
+            if (!isValid(authorData.password)) return res.status(400).send({ status: false, message: 'Password is required' })
+
+            let email = authorData.email
+            let validEmail = validator.validate(email)
+
+            if (validEmail == true) {
+                let authorFound = await authorModel.findOne({email: email})
+
+                if ( !authorFound ) {
+                    let authorCreated = await authorModel.create(authorData)
+                    res.status(201).send({status: true, author: authorCreated})
+                } else {
+                    res.status(400).send({msg: "Email already in use."})
+                }
+
+            } else {
+                res.status(403).send({status: false, msg: "Email is not valid."})
+            }
+
+        } else {
+            res.status(400).send({msg: "BAD REQUEST (No data provided in the body)"})
         }
 
         if (!isValid(requestBody.lname)) {
