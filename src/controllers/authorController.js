@@ -1,7 +1,6 @@
-const authorModel = require("../models/authorModel")
-const jwt = require("jsonwebtoken");
-const validator = require("email-validator");
-
+const authorModel = require("../models/authorModel")  // importing the module that contains the author schema
+const jwt = require("jsonwebtoken");  // importing the jsonwebtoken so as to generate the token for the author after successful login
+const validator = require("email-validator");  // importing the package in order to identify a valid email.
 
 // validation function 
 const isValid = function(value) {
@@ -15,37 +14,18 @@ const isValidRequestBody = function(requestBody) {
         //will return an array of all keys. so, we can simply get the length of an array with .length
 }
 
-const createAuthor = async function (req, res) {
+// api to create author 
+const createAuthor = async function(req, res) {
     try {
         let requestBody = req.body
 
-        if (keysArray.length !== 0) {
-
-            if (!isValid(authorData.fname)) return res.status(400).send({ status: false, message: 'First name is required' })
-            if (!isValid(authorData.lname)) return res.status(400).send({ status: false, message: 'Last name is required' })
-            if (!isValid(authorData.title)) return res.status(400).send({ status: false, message: 'Title is required' })
-            if (!isValid(authorData.email)) return res.status(400).send({ status: false, message: 'email is required' })
-            if (!isValid(authorData.password)) return res.status(400).send({ status: false, message: 'Password is required' })
-
-            let email = authorData.email
-            let validEmail = validator.validate(email)
-
-            if (validEmail == true) {
-                let authorFound = await authorModel.findOne({email: email})
-
-                if ( !authorFound ) {
-                    let authorCreated = await authorModel.create(authorData)
-                    res.status(201).send({status: true, author: authorCreated})
-                } else {
-                    res.status(400).send({msg: "Email already in use."})
-                }
-
-            } else {
-                res.status(403).send({status: false, msg: "Email is not valid."})
-            }
-
-        } else {
-            res.status(400).send({msg: "BAD REQUEST (No data provided in the body)"})
+        if (!isValidRequestBody(requestBody)) {
+            res.status(400).send({ status: false, message: 'Invalid request parameters. Please provide author details' })
+            return
+        }
+        if (!isValid(requestBody.fname)) {
+            res.status(400).send({ status: false, message: 'First name is required' })
+            return
         }
 
         if (!isValid(requestBody.lname)) {
@@ -66,11 +46,13 @@ const createAuthor = async function (req, res) {
             res.status(400).send({ status: false, message: 'password is required' })
             return
         }
-        if (!(validator.validate(requestBody.email))) {
+        if (!(validator(requestBody.email))) {
             return res.status(400).send({ status: false, msg: 'enter valid email' })
         }
 
         const isEmailAlreadyUsed = await authorModel.findOne({ email: requestBody.email });
+
+
         if (isEmailAlreadyUsed) {
             res.status(400).send({ status: false, message: `${requestBody.email} email address is already registered` })
             return
@@ -84,28 +66,33 @@ const createAuthor = async function (req, res) {
     }
 };
 
+
+
+
+// ==> POST api: Login for an author
+
 const loginAuthor = async function (req, res) {
     try {
         let email = req.body.email
         let password = req.body.password
-        if ( !email || !password ) return res.status(400).send({status: false, msg: "Provide the email and password."})
+        if ( !email || !password ) return res.status(400).send({ status: false, msg: "Provide the email and password." })  // if either email, password or both not present in the request body.
 
-        let validEmail = validator.validate(email)
-        if ( validEmail == false ) return res.status(400).send({ status: false, msg: "Email is not valid."})
+        let validEmail = validator.validate(email)  // to validate the email by the use of package
+        if ( validEmail == false ) return res.status(400).send({ status: false, msg: "Email is not valid."})  // if email is not validated.
 
-        let author = await authorModel.findOne( { email: email, password: password } )
-        if ( !author ) return res.status(403).send( { status: false, msg: "Email or password is incorrect."})
+        let author = await authorModel.findOne( { email: email, password: password } )  // to find that particular author document.
+        if ( !author ) return res.status(403).send({ status: false, msg: "Email or password is incorrect." })  // if the author document isn't found in the database.
 
-        let token = jwt.sign(
+        let token = jwt.sign(  // --> to generate the jwt token
             {
-                authorId: author._id.toString(),
+                authorId: author._id.toString(),          // --> payload
                 project: "Blogging Site Mini Project",
                 batch: "Radon"
             },
-            "avinash-ajit-manish-nikhilesh"
+            "avinash-ajit-manish-nikhilesh"               // --> secret key
         )
-        res.setHeader("x-api-key", token)
-        res.status(200).send({ status: true, token: token})
+        res.setHeader("x-api-key", token)  // to send the token in the header of the browser used by the author(user).
+        res.status(200).send({ status: true, token: token })  // token is shown in the response body.
     } catch (err) {
         res.status(500).send({ status: false, err: err.message })
     }
@@ -113,5 +100,6 @@ const loginAuthor = async function (req, res) {
 
 
 
+// exporting all the functions
 module.exports.createAuthor = createAuthor
 module.exports.loginAuthor = loginAuthor

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose')  // importing the mongoose to create the schema for an author model
 
 const authorSchema = new mongoose.Schema({
     fname: {
@@ -25,4 +25,4 @@ const authorSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-module.exports = mongoose.model('Author', authorSchema)
+module.exports = mongoose.model('Author', authorSchema)  // mongoose creates the model

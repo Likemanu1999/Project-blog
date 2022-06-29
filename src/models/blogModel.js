@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const objectId = mongoose.Schema.Types.ObjectId
+const mongoose = require('mongoose')  // importing the mongoose to create the blog schema
+const objectId = mongoose.Schema.Types.ObjectId  // syntax to refer an authorId in a blog
 
 const blogSchema = new mongoose.Schema({
     title: {
@@ -39,4 +39,4 @@ const blogSchema = new mongoose.Schema({
 
 }, { timestamps: true })
 
-module.exports = mongoose.model('Blog', blogSchema)
+module.exports = mongoose.model('Blog', blogSchema)  // mongoose creates the model

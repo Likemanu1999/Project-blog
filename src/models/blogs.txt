@@ -1,0 +1,156 @@
+categories: Business, Fashion, Lifestyle, Travel, Food, Multimedia, Photography
+
+
+1.
+{
+    "title": "What I Wore Today",
+    "body": "Whatever I wear, I always look good.",
+    "authorId": "62b4476af2578b189fb825f5",
+    "tags": ["makeover", "beauty"],
+    "category": "Fashion"
+}
+2.
+{
+    "title": "Fashion State of Mind",
+    "body": "My mood today as well as my mind became one.",
+    "authorId": "62b447a0f2578b189fb825f8",
+    "tags": ["panache"],
+    "category": "Fashion"
+}
+3.
+{
+    "title": "Be Bold",
+    "body": "Why care when you have you.",
+    "authorId": "62b447e2f2578b189fb825fb",
+    "tags": ["glamour"],
+    "category": "Fashion"
+}
+4.
+{
+    "title": "If I Were You",
+    "body": "I would not try to be me if I were you.",
+    "authorId": "62b449d347134e5b2362ac08",
+    "category": "Business"
+}
+5.
+{
+    "title": "Idle Lifestyle",
+    "body": "Idle lifestyle is the one which defines you or which you define.",
+    "authorId": "62b4476af2578b189fb825f5",
+    "category": "Lifestyle"
+}
+6.
+{
+    "title": "Find Balance",
+    "body": "It's not always a bad path to go for easy paths like everybody else.",
+    "authorId": "62b447a0f2578b189fb825f8",
+    "category": "Lifestyle"
+}
+7.
+{
+    "title": "It's a race",
+    "body": "In this race, we don't always have to look for profits but partnerships.",
+    "authorId": "62b447e2f2578b189fb825fb",
+    "category": "Business",
+    "subcategory": ["Partnership", "LLP", "Nonprofit corporation"]
+}
+8.
+{
+    "title": "Living With Style",
+    "body": "Style is one by the virtue of which you many a time live your life.",
+    "authorId": "62b449d347134e5b2362ac08",
+    "tags": ["lifestyle", "fashion"],
+    "category": "Lifestyle"
+}
+9.
+{
+    "title": "Family on Airplane",
+    "body": "Today I felt heart warming when I saw my whole family against me in the flight.",
+    "authorId": "62b4476af2578b189fb825f5",
+    "tags": ["family trip", "travel more"],
+    "category": "Travel",
+    "subcategory": ["Air travel", "Road trip"]
+}
+10.
+{
+    "title": "Fearless Outing",
+    "body": "It can really be a fun to not care about the timings but fun only.",
+    "authorId": "62b447a0f2578b189fb825f8",
+    "category": "Travel"
+}
+11.
+{
+    "title": "Ready your bags",
+    "body": "I have packed my bags and I am coming.",
+    "authorId": "62b447e2f2578b189fb825fb",
+    "category": "Travel"
+}
+12.
+{
+    "title": "Shores and Mountains",
+    "body": "My journey is calling me to the hills so that I can watch the shores.",
+    "authorId": "62b449d347134e5b2362ac08",
+    "category": "Travel"
+}
+13.
+{
+    "title": "Awesomely Eating",
+    "body": "Eating may be an art and I have realised it today.",
+    "authorId": "62b4476af2578b189fb825f5",
+    "category": "Food"
+}
+14.
+{
+    "title": "Curious Appetite",
+    "body": "I always wonder as if I am not gonna lose my appetite anytime.",
+    "authorId": "62b447a0f2578b189fb825f8",
+    "category": "Food"
+}
+15.
+{
+    "title": "Easy Cooking Bite",
+    "body": "Sometimes I feel that cooking is not easy but is easy as well.",
+    "authorId": "62b447e2f2578b189fb825fb",
+    "category": "Food",
+    "subcategory": ["Labanese", "Japanese"]
+}
+16.
+{
+    "title": "All I Ate",
+    "body": "All I ate was Italian dumplings in a Japanese restaurant in Mexico and it was amazing.",
+    "authorId": "62b449d347134e5b2362ac08",
+    "tags": ["foodlover", "yummy", "delicious"],
+    "category": "Food",
+    "subcategory": ["Mexican", "Italian", "Japanese"]
+}
+17.
+{
+    "title": "Experience teaches the best",
+    "body": "To do anything or everything, learn to learn from your experiences.",
+    "authorId": "62b4476af2578b189fb825f5",
+    "category": "Business"
+}
+18.
+{
+    "title": "Happy Lens",
+    "body": "A happy lens is everything you need to be happy.",
+    "authorId": "62b447a0f2578b189fb825f8",
+    "category": "Photography"
+}
+19.
+{
+    "title": "Camera Fodder",
+    "body": "I may not be a camera fodder, but I can make others one.",
+    "authorId": "62b447e2f2578b189fb825fb",
+    "tags": ["photo", "pic of the day", "nature"],
+    "category": "Photography",
+    "subcategory": ["Still life photography", "Birding photography"]
+}
+20.
+{
+    "title": "Moments That Matter",
+    "body": "Either it's photojournalism or editorial, my still life photography techniques make them beautiful.",
+    "authorId": "62b449d347134e5b2362ac08",
+    "category": "Photography",
+    "subcategory": ["Photojournalism", "Still life photography", "Editorial photography"]
+}
